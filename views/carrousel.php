@@ -16,16 +16,27 @@
             height: 100%;
             object-fit: contain; /* Reescala la imagen sin recortar */
         }
+         /* Estilo para la marca de agua */
+         .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000; /* Asegura que la marca de agua esté sobre el carrusel */
+            opacity: 0.7; /* Transparencia de la marca de agua */
+        }
+        .watermark img {
+            width: 150px; /* Ajusta el tamaño de la marca de agua según sea necesario */
+            height: auto;
+        }
     </style>
     <?php 
     include("../inc/images.php");
     ?>
 </head>
 <body>
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"  data-bs-interval="10000">
   <div class="carousel-inner">
     <?php
-        // Asumiendo que tienes una conexión a la base de datos en $app_db
         $images = get_all_images();
         $isActive = true; // Para marcar la primera imagen como activa
 
@@ -46,6 +57,11 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+</div>
+
+<!-- Marca de agua -->
+<div class="watermark">
+    <img src="../LogoMarDeCortes_transparent-453100641.png" alt="Marca de agua">
 </div>
 </body>
 </html>
